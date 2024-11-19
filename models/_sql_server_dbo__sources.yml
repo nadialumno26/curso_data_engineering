@@ -54,6 +54,7 @@ sources:
             description: >
               web address for each event_id.
           - name: event_type
+            description: '{{ doc("event_type") }}'
             tests:
                 - not_null
           - name: user_id
@@ -74,9 +75,15 @@ sources:
             description: >
               one-time id where a user access page.
           - name: created_at
+            description: >
+              time at which each event was created.
           - name: order_id
+            description: >
+              UUID for each order (only entries for add_to_cart and checkout event_type).
           - name: _fivetran_deleted
           - name: _fivetran_synced
+            description: >
+              date the data was loaded.
             tests:
               - not_null
     
@@ -88,11 +95,19 @@ sources:
               - unique
               - not_null
           - name: shipping_service
+            description: >
+              Mail shipping companies in the U.S.
           - name: shipping_cost
+            description: >
+              Cost of the shipping service in euros.
             tests:
               - not_null
           - name: address_id
+            description: >
+              UUID where the order will be shipped.
           - name: created_at
+            description: >
+              Time at which the order was placed.
           - name: promo_id
             tests:
               - relationships:
