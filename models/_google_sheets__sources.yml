@@ -19,9 +19,33 @@ sources:
 
       - name: budget
         loaded_at_field: _fivetran_synced
+        description: >
+          Data about budget in demo.
         columns:
           - name: _row
+            description: >
+              Consecutive number of each row from google sheet.
+            tests:
+              - unique
+              - not_null
           - name: product_id
+            description: >
+              UUID for each unique product on the platform.
+            tests:
+              - relationships:
+                  to: source('sql_server_db','products')
+                  field: product_id
           - name: quantity
+            description: >
+              Number of units for each product per each month.
+            tests:
+              - positive_values
           - name: month
+            description: >
+              Each month for the budget -> End of the month.
           - name: _fivetran_synced
+            description: >
+              date the data was loaded.
+            tests:
+              - not_null
+          
