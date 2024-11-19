@@ -10,7 +10,7 @@ WITH src_products AS (
     FROM {{ source('sql_server_dbo', 'products') }}
     ),
 
-renamed_casted AS (
+silver_products AS (
     SELECT
           product_id
         , name AS desc_product
@@ -21,4 +21,4 @@ renamed_casted AS (
     FROM src_products
     )
 
-SELECT * FROM renamed_casted
+SELECT * FROM silver_products

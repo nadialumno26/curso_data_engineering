@@ -36,8 +36,6 @@ sources:
               state names inside the country.
           - name: _fivetran_deleted
           - name: _fivetran_synced
-            description: >
-              date the data was loaded.
             tests:
              - not_null
 
@@ -82,8 +80,6 @@ sources:
               UUID for each order (only entries for add_to_cart and checkout event_type).
           - name: _fivetran_deleted
           - name: _fivetran_synced
-            description: >
-              date the data was loaded.
             tests:
               - not_null
     
@@ -115,19 +111,29 @@ sources:
                   field: promo_id
           - name: estimated_delivery
           - name: order_cost
+            description: >
+              cost of the order in euros.
             tests:
               - not_null
           - name: user_id
+            description: >
+              UUID of the user that placed the order.
             tests:
               - relationships:
                   to: source('sql_server_db','users')
                   field: user_id
           - name: order_total
+            description: >
+              total cost of the order in euros.
             tests:
               - not_null
           - name: delivered_at
           - name: tracking_id
+            description: >
+              UUID tracking the shipment of the order.
           - name: status
+            description: >
+              state of the order in the manufacturing process.
           - name: _fivetran_deleted
           - name: _fivetran_synced
             tests:
@@ -147,8 +153,10 @@ sources:
                   to: source('sql_server_db','products')
                   field: product_id
           - name: quantity
+            description: >
+              total number of items that have been ordered.
             tests:
-              - positive_values
+              - positive_values_generic
           - name: _fivetran_deleted
           - name: _fivetran_synced
             tests:
@@ -162,8 +170,12 @@ sources:
               - unique
               - not_null
           - name: price
+            description: >
+              price of the product in euros.
           - name: name
           - name: inventory
+            description: >
+              amount of unique product left after purchases.
           - name: _fivetran_deleted
           - name: _fivetran_synced
             tests:
@@ -177,7 +189,11 @@ sources:
               - unique
               - not_null
           - name: discount
+            description: >
+              discount made in each product in euros.
           - name: status
+            description: >
+              whether discount is active or inactive.
           - name: _fivetran_deleted
           - name: _fivetran_synced
             tests:
@@ -191,6 +207,8 @@ sources:
               - unique
               - not_null
           - name: updated_at
+            description: >
+              when info about the user is updated
           - name: address_id
             tests:
               - relationships:
@@ -199,6 +217,8 @@ sources:
           - name: first_name      
           - name: last_name
           - name: created_at
+            description: >
+              when the user's profile was created
           - name: phone_number
           - name: email    
           - name: _fivetran_deleted

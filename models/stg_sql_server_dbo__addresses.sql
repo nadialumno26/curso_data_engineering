@@ -10,9 +10,9 @@ WITH src_addresses AS (
     FROM {{ source('sql_server_dbo', 'addresses') }}
     ),
 
-renamed_casted AS (
+silver_addresses AS (
     SELECT
-          addresses_id
+        address_id
         , address
         , zipcode
         , state
@@ -22,4 +22,4 @@ renamed_casted AS (
     FROM src_addresses
     )
 
-SELECT * FROM renamed_casted
+SELECT * FROM silver_addresses

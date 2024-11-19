@@ -14,6 +14,6 @@ SELECT
     DNI,
     email,
     fecha_alta_sistema
-FROM {{ source('ALUMNO26_DEV_BRONZE_DB', 'users') }}
+FROM {{ source('db__sources', 'users') }}
 
 {% endsnapshot %}

@@ -10,19 +10,19 @@ WITH src_orders AS (
     FROM {{ source('sql_server_dbo', 'orders') }}
     ),
 
-renamed_casted AS (
+silver_orders AS (
     SELECT
-          order_id,
-        , shipping_service
-        , shipping_cost AS shipping_cost_in_euro
-        , address_id
-        , created_at::TIMESTAMP_NTZ AS order_created_at
-        , distinct md5 (promo_id) AS promo_id
-        , estimated_delivery_at::TIMESTAMP_NTZ AS estimated_delivery_at_utc
-        , order_cost AS order_cost_in_euro
+          order_id
         , user_id
-        , order_total AS order_total_in_euro
+        , address_id
+        , md5 (promo_id) AS promo_id
+        , created_at::TIMESTAMP_NTZ AS created_at_utc
+        , estimated_delivery_at::TIMESTAMP_NTZ AS estimated_delivery_at_utc
         , delivered_at::TIMESTAMP_NTZ AS delivered_at_utc
+        , order_cost AS order_cost_in_euros
+        , order_total AS order_total_in_euros
+        , shipping_service
+        , shipping_cost AS shipping_cost_in_euros
         , tracking_id
         , status AS order_status
         , _fivetran_deleted AS if_deleted
@@ -30,4 +30,4 @@ renamed_casted AS (
     FROM src_orders
     )
 
-SELECT * FROM renamed_casted
+SELECT * FROM silver_orders

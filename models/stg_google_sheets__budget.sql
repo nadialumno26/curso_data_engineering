@@ -10,14 +10,14 @@ WITH src_budget AS (
     FROM {{ source('google_sheets', 'budget') }}
     ),
 
-renamed_casted AS (
+silver_budget AS (
     SELECT
           _row
         , product_id
         , quantity
-        , month AS date_budgeted
+        , month AS end_month_budgeted
         , _fivetran_synced AS date_load
     FROM src_budget
     )
 
-SELECT * FROM renamed_casted
+SELECT * FROM silver_budget

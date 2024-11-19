@@ -10,3 +10,15 @@ One of the following values:
 | package shipped | order has left warehouse and is being shipped to customer  |
 
 {% enddocs %}
+
+{% docs _fivetran_synced %}
+	
+_fivetran_synced will express the date the data was loaded.
+
+{% enddocs %}
+
+{% docs _fivetran_deleted %}
+	
+_fivetran_deleted has data type: boolean. It will flag if there has been a "soft delete" without necessarily deleting the row. 
+
+{% enddocs %}
