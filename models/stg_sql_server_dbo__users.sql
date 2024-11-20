@@ -21,7 +21,7 @@ silver_users AS (
         , created_at::TIMESTAMP_NTZ AS created_at_utc
         , updated_at::TIMESTAMP_NTZ AS updated_at_utc
         , _fivetran_deleted AS if_deleted
-        , _fivetran_synced AS date_load
+        , _fivetran_synced::TIMESTAMP_NTZ AS date_load_utc
     FROM src_users
     )
 

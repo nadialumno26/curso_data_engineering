@@ -12,11 +12,11 @@ WITH src_order_items AS (
 
 silver_order_items AS (
     SELECT
-         md5 (order_id, product_id) as order_items_id
-        , order_id
+         order_id
         , product_id
         , quantity
-        , _fivetran_synced AS date_load
+        , _fivetran_deleted as if_deleted
+        , _fivetran_synced::TIMESTAMP_NTZ as date_load
     FROM src_order_items
     )
 

@@ -19,6 +19,13 @@ _fivetran_synced will express the date the data was loaded.
 
 {% docs _fivetran_deleted %}
 	
-_fivetran_deleted has data type: boolean. It will flag if there has been a "soft delete" without necessarily deleting the row. 
+_fivetran_deleted has data type: boolean. It will flag if there has been a "delete" without necessarily deleting the row. 
+
+{% enddocs %}
+
+{% docs order_items %}
+	
+table order_items is the bridge between orders and products, hence both IDs (order_id, product_id)
+are this table's primary key
 
 {% enddocs %}

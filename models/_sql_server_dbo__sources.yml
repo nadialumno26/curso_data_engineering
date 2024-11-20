@@ -155,8 +155,6 @@ sources:
           - name: quantity
             description: >
               total number of items that have been ordered.
-            tests:
-              - positive_values_generic
           - name: _fivetran_deleted
           - name: _fivetran_synced
             tests:

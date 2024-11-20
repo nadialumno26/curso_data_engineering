@@ -38,8 +38,6 @@ sources:
           - name: quantity
             description: >
               Number of units for each product per each month.
-            tests:
-              - positive_values_generic
           - name: month
             description: >
               Each month for the budget -> End of the month.

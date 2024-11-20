@@ -18,7 +18,7 @@ silver_addresses AS (
         , state
         , country
         , _fivetran_deleted AS if_deleted
-        , _fivetran_synced AS date_load
+        , _fivetran_synced::TIMESTAMP_NTZ AS date_load_utc
     FROM src_addresses
     )
 
