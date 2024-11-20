@@ -1,6 +1,6 @@
 models:
   - name: stg_sql_server_dbo__addresses
-    description: ""
+    description: "stage table in silver for addresses"
     columns:
       - name: address_id
         data_type: varchar
@@ -24,238 +24,237 @@ models:
 
       - name: if_deleted
         data_type: boolean
-        description: "Marks when row has been deleted without "
+        description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load_utc
         data_type: timestamp_ntz
-        description: ""
+        description: "Date the data was loaded. Transformed to UTC"
 
   - name: stg_sql_server_dbo__users
-    description: ""
+    description: "stage table in silver for addresses"
     columns:
       - name: user_id
         data_type: varchar
-        description: ""
+        description: "UUID for each user"
 
       - name: address_id
         data_type: varchar
-        description: ""
+        description: "UUID for the address associated with the user"
 
       - name: first_name
         data_type: varchar
-        description: ""
+        description: "user's first name"
 
       - name: last_name
         data_type: varchar
-        description: ""
+        description: "user's last name"
 
       - name: phone_number
         data_type: varchar
-        description: ""
+        description: "user's phone number"
 
       - name: email
         data_type: varchar
-        description: ""
+        description: "user's email"
 
       - name: created_at_utc
         data_type: timestamp_ntz
-        description: ""
+        description: "Timestamp of when the user was created in UTC"
 
       - name: updated_at_utc
         data_type: timestamp_ntz
-        description: ""
-
+        description: "Timestamp of when the user was last updated in UTC"
       - name: if_deleted
         data_type: boolean
-        description: ""
+        description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load_utc
         data_type: timestamp_ntz
-        description: ""
+        description: "Date when the data was loaded in UTC"
 
   - name: stg_sql_server_dbo__promos
-    description: ""
+    description: "stage table in silver for promos"
     columns:
       - name: promo_id
         data_type: varchar
-        description: ""
+        description: "UUID for each promo (surrogate_key)"
 
       - name: desc_promo
         data_type: varchar
-        description: ""
+        description: "Description of the promo."
 
       - name: discount_in_euros
         data_type: number
-        description: ""
+        description: "discount in euros associated with the promo."
 
       - name: promo_status
         data_type: varchar
-        description: ""
+        description: "Status of the promo"
 
       - name: if_deleted
         data_type: boolean
-        description: ""
+        description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load
         data_type: timestamp_ntz
-        description: ""
+        description: "Date when the data was loaded in UTC"
 
   - name: stg_sql_server_dbo__products
-    description: ""
+    description: "stage table in silver for products"
     columns:
       - name: product_id
         data_type: varchar
-        description: ""
+        description: "UUID for each product"
 
       - name: desc_product
         data_type: varchar
-        description: ""
+        description: "Description of the product"
 
       - name: price_in_euro
         data_type: float
-        description: ""
+        description: "Price of the product in euros"
 
       - name: inventory
         data_type: number
-        description: ""
+        description: "inventory count for each product"
 
       - name: if_deleted
         data_type: boolean
-        description: ""
+        description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load_utc
         data_type: timestamp_ntz
-        description: ""
+        description: "Date when the data was loaded in UTC"
 
   - name: stg_sql_server_dbo__orders
-    description: ""
+    description: "stage table in silver for orders"
     columns:
       - name: order_id
         data_type: varchar
-        description: ""
+        description: "UUID for each order"
 
       - name: user_id
         data_type: varchar
-        description: ""
+        description: "user's UUID"
 
       - name: address_id
         data_type: varchar
-        description: ""
+        description: "address' UUID"
 
       - name: promo_id
         data_type: varchar
-        description: ""
+        description: "promo's UUID"
 
       - name: created_at_utc
         data_type: timestamp_ntz
-        description: ""
+        description: "Timestamp of when the order was created at UTC"
 
       - name: estimated_delivery_at_utc
         data_type: timestamp_ntz
-        description: ""
+        description: "Timestamp estimating when order is expected to get delivered in UTC"
 
       - name: delivered_at_utc
         data_type: timestamp_ntz
-        description: ""
+        description: "Timestamp of when the order was delivered"
 
       - name: order_cost_in_euros
         data_type: float
-        description: ""
+        description: "cost of the order before shipping"
 
       - name: order_total_in_euros
         data_type: float
-        description: ""
+        description: "total cost of the order"
 
       - name: shipping_cost_in_euros
         data_type: float
-        description: ""
+        description: "shipping costof the order"
 
       - name: shipping_service
         data_type: varchar
-        description: ""
+        description: "shipping service provider"
 
       - name: tracking_id
         data_type: varchar
-        description: ""
+        description: "UUID to track the order"
 
       - name: order_status
         data_type: varchar
-        description: ""
+        description: "current status of the orders"
 
       - name: if_deleted
         data_type: boolean
-        description: ""
+        description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load_utc
         data_type: timestamp_ntz
-        description: ""
+        description: "Date when the data was loaded in UTC"
 
   - name: stg_sql_server_dbo__order_items
-    description: ""
+    description: "stage table in silver for orders_items"
     columns:
       - name: order_items_id
         data_type: varchar
-        description: ""
+        description: "UUID for each order item"
 
       - name: order_id
         data_type: varchar
-        description: ""
+        description: "UUID for the associated order"
 
       - name: product_id
         data_type: varchar
-        description: ""
+        description: "UUID for the products purchased within the order"
 
       - name: quantity
         data_type: number
-        description: ""
+        description: "quantity of the product ordered"
 
       - name: if_deleted
         data_type: boolean
-        description: ""
+        description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load
         data_type: timestamp_ntz
-        description: ""
+        description: "Date when the data was loaded in UTC"
 
   - name: stg_sql_server_dbo__events
-    description: ""
+    description: "stage table in silver for events"
     columns:
       - name: event_id
         data_type: varchar
-        description: ""
+        description: "UUID for the event"
 
       - name: page_url
         data_type: varchar
-        description: ""
+        description: "URL of the page where the event occurred"
 
       - name: event_type
         data_type: varchar
-        description: ""
+        description: "type of event"
 
       - name: user_id
         data_type: varchar
-        description: ""
+        description: "UUID for the user who triggered the event"
 
       - name: product_id
         data_type: varchar
-        description: ""
+        description: "UUID for the product associated with the event"
 
       - name: session_id
         data_type: varchar
-        description: ""
+        description: "UUID of the browsing session when the event occurred"
 
       - name: created_at_utc
         data_type: timestamp_ntz
-        description: ""
+        description: "Timestamp of when the event occurred in UTC"
 
       - name: order_id
         data_type: varchar
-        description: ""
+        description: "UUID for the order associated with the event"
 
       - name: if_deleted
         data_type: boolean
-        description: ""
+        description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load_utc
         data_type: timestamp_ntz
-        description: ""
+        description: "Date when the data was loaded in UTC"
