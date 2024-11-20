@@ -22,7 +22,9 @@ silver_orders AS (
         , order_cost AS order_cost_in_euros
         , order_total AS order_total_in_euros
         , shipping_cost AS shipping_cost_in_euros
-        , shipping_service
+        ,   CASE WHEN shipping_service = '' THEN 'not_assigned'
+                ELSE shipping_service
+            END AS shipping_service
         , tracking_id
         , status AS order_status
         , _fivetran_deleted AS if_deleted
