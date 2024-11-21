@@ -40,3 +40,13 @@ models:
     # Applies to all files under models/example/
     example:
       +materialized: table
+    curso_data_eng:
+    # Applies to all files under models/example/
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+
+seeds:
+  +database: "ALUMNO26_DEV_BRONZE_DB"
+  +schema: "SEEDS"
