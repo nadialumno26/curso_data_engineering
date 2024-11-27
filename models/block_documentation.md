@@ -25,7 +25,8 @@ _fivetran_deleted has data type: boolean. It will flag if there has been a "dele
 
 {% docs order_items %}
 	
-table order_items is the bridge between orders and products, hence both IDs (order_id, product_id)
+order_items is the bridge between orders and products, hence both IDs (order_id, product_id)
 are this table's primary key
 
 {% enddocs %}
+
