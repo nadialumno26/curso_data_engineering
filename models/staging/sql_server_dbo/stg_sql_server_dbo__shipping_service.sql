@@ -10,7 +10,7 @@ WITH src_orders AS (
     ),
 
 silver_shipping_service AS (
-    SELECT DISTINCT
+    SELECT
         {{ dbt_utils.generate_surrogate_key(['shipping_service']) }} as shipping_service_id
         , CASE WHEN shipping_service = '' THEN 'not_assigned'
                 ELSE shipping_service

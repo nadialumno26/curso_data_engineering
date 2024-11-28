@@ -1,6 +1,4 @@
 
-
-
 WITH src_orders AS (
     SELECT * 
     FROM {{ ref("base_sql_server_dbo_orders") }}
