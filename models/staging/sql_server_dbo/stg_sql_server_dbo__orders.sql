@@ -14,8 +14,8 @@ silver_orders AS (
         , estimated_delivery_at_utc
         , delivered_at_utc
         , order_cost_in_euros
-        , order_total_in_euros
         , shipping_cost_in_euros
+        , order_total_in_euros
         , shipping_service
         , tracking_id
         , order_status

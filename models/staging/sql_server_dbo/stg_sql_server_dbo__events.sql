@@ -18,7 +18,7 @@ silver_events as (
         , convert_timezone('UTC',created_at) AS created_at_utc
         , order_id
         , _fivetran_deleted AS if_deleted
-        , convert_timezone('UTC',_fivetran_synced) AS convert_to_utc
+        , convert_timezone('UTC',_fivetran_synced) AS date_load_utc
 
     from src_events
 

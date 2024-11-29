@@ -205,6 +205,8 @@ models:
         description: "UUID for the products purchased within the order"
 
       - name: quantity
+        tests:
+          - dbt_utils.at_least_one
         data_type: number
         description: "quantity of the product ordered"
 
@@ -217,7 +219,7 @@ models:
         description: "Date when the data was loaded in UTC"
 
   - name: stg_sql_server_dbo__events
-    description: "stage table in silver for events"
+    description: "staged table in silver for events"
     columns:
       - name: event_id
         data_type: varchar
@@ -258,3 +260,28 @@ models:
       - name: date_load_utc
         data_type: timestamp_ntz
         description: "Date when the data was loaded in UTC"
+
+  - name: stg_sql_server_dbo__shipping_service
+    description: "staged table in silver for the shipping services assigned in each order"
+    columns:
+      - name: shipping_service_id
+        data_type: varchar
+        description: "UUID for each shipping service company described"
+
+      - name: shipping_service
+        data_type: varchar
+        description: "Description of the companies handling the shipping"
+        tests:
+           - dbt_expectations.expect_column_values_to_be_in_set:
+               value_set: ['ups','usps','fedex','dhl','not_assigned']
+
+      - name: if_deleted
+        data_type: boolean
+        description: "Marks/flags when row has been deleted without deleting row"
+
+      - name: date_load_utc
+        data_type: timestamp_ntz
+        description: "Date when the data was loaded in UTC"
+        tests:
+          - not_null
+                

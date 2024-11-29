@@ -16,7 +16,7 @@ silver_shipping_service AS (
                 ELSE shipping_service
             END AS shipping_service
         , _fivetran_deleted AS if_deleted
-        , _fivetran_synced AS date_load_utc
+        , convert_timezone('UTC',_fivetran_synced) AS date_load_utc
     FROM src_orders
     )
 

@@ -24,17 +24,23 @@ sources:
             tests:
               - unique
               - not_null
+
           - name: zipcode
             description: >
               area code for each address.
+
           - name: country
+
           - name: address
             description: >
               street name
+
           - name: state
             description: >
               state names inside the country.
+
           - name: _fivetran_deleted
+
           - name: _fivetran_synced
             tests:
              - not_null
@@ -44,41 +50,50 @@ sources:
         columns:
           - name: event_id
             description: >
-              UUID for each unique click on the platform/website.
+              UUID for each unique click on the platform/website
             tests:
               - unique
               - not_null
+
           - name: page_url
             description: >
-              web address for each event_id.
+              web address for each event_id
+
           - name: event_type
             description: '{{ doc("event_type") }}'
             tests:
                 - not_null
+
           - name: user_id
             description: >
-              UUID of the user currently creating the events.
+              UUID of the user currently creating the events
             tests:
               - relationships:
                   to: source('sql_server_db','users')
                   field: user_id
+
           - name: product_id
             description: >
-              product being viewed by the user.
+              product being viewed by the user
             tests:
               - relationships:
                   to: source('sql_server_db','products')
                   field: product_id
+
           - name: session_id
             description: >
-              one-time id where a user access page.
+              one-time id where a user access page
+
           - name: created_at
             description: >
-              time at which each event was created.
+              time at which each event was created
+
           - name: order_id
             description: >
-              UUID for each order (only entries for add_to_cart and checkout event_type).
+              UUID for each order (only entries for add_to_cart and checkout event_type)
+
           - name: _fivetran_deleted
+
           - name: _fivetran_synced
             tests:
               - not_null
@@ -87,58 +102,74 @@ sources:
         loaded_at_field: _fivetran_synced
         columns:
           - name: order_id
+            description: >
+              UUID of each order
             tests:
               - unique
               - not_null
+
           - name: shipping_service
             description: >
-              Company that handles the shipping ('ups', 'usps', 'fedex', 'dhl', 'not_assigned')
+              Company that handles the shipping ('ups', 'usps', 'fedex', 'dhl')
             tests:
               - relationships:
                   to: source('sql_server_db','shipping_service')
                   field: shipping_service
+
           - name: shipping_cost
             description: >
-              Cost of the shipping service in euros.
+              Cost of the shipping service in euros
             tests:
               - not_null
+
           - name: address_id
             description: >
-              UUID where the order will be shipped.
+              UUID where the order will be shipped
+
           - name: created_at
             description: >
-              Time at which the order was placed.
+              Time at which the order was placed
+
           - name: promo_id
             tests:
               - relationships:
                   to: source('sql_server_db','promos')
                   field: promo_id
+
           - name: estimated_delivery
+
           - name: order_cost
             description: >
-              cost of the order in euros.
+              cost of the order in euros
             tests:
               - not_null
+
           - name: user_id
             description: >
-              UUID of the user that placed the order.
+              UUID of the user that placed the order
             tests:
               - relationships:
                   to: source('sql_server_db','users')
                   field: user_id
+
           - name: order_total
             description: >
-              total cost of the order in euros.
+              total cost of the order in euros
             tests:
               - not_null
+
           - name: delivered_at
+
           - name: tracking_id
             description: >
-              UUID tracking the shipment of the order.
+              UUID tracking the shipment of the order
+
           - name: status
             description: >
-              state of the order in the manufacturing process.
+              state of the order in the manufacturing process
+
           - name: _fivetran_deleted
+
           - name: _fivetran_synced
             tests:
               - not_null
@@ -151,15 +182,19 @@ sources:
               - relationships:
                   to: source('sql_server_db','orders')
                   field: order_id
+
           - name: product_id
             tests:
               - relationships:
                   to: source('sql_server_db','products')
                   field: product_id
+
           - name: quantity
             description: >
-              total number of items that have been ordered.
+              total number of items that have been ordered
+
           - name: _fivetran_deleted
+
           - name: _fivetran_synced
             tests:
                - not_null
@@ -171,14 +206,21 @@ sources:
             tests:
               - unique
               - not_null
+
           - name: price
             description: >
-              price of the product in euros.
+              price of the product in euros
+
           - name: name
+            description: > 
+              descriptive name of the product
+
           - name: inventory
             description: >
-              amount of unique product left after purchases.
+              amount of unique product left after purchases
+
           - name: _fivetran_deleted
+
           - name: _fivetran_synced
             tests:
               - not_null
@@ -190,13 +232,17 @@ sources:
             tests:
               - unique
               - not_null
+
           - name: discount
             description: >
-              discount made in each product in euros.
+              discount made in each product in euros
+
           - name: status
             description: >
-              whether discount is active or inactive.
+              whether discount is active or inactive
+
           - name: _fivetran_deleted
+
           - name: _fivetran_synced
             tests:
               - not_null
@@ -208,32 +254,31 @@ sources:
             tests:
               - unique
               - not_null
+
           - name: updated_at
             description: >
               when info about the user is updated
+
           - name: address_id
             tests:
               - relationships:
                   to: source('sql_server_db','address')
                   field: address_id
-          - name: first_name      
+
+          - name: first_name     
+
           - name: last_name
+
           - name: created_at
             description: >
               when the user's profile was created
+
           - name: phone_number
+
           - name: email    
+
           - name: _fivetran_deleted
+
           - name: _fivetran_synced
             tests:
               - not_null
-      - name: shipping_service
-        loaded_at_field: _fivetran_synced
-        columns:
-          - name: shipping_service_id
-          - name: shipping_service
-          - name: _fivetran_deleted
-          - name: _fivetran_synced
-            tests:
-              - not_null
-                

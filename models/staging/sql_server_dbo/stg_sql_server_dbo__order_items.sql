@@ -17,7 +17,7 @@ silver_order_items AS (
         , product_id
         , quantity
         , _fivetran_deleted as if_deleted
-        , _fivetran_synced::TIMESTAMP_NTZ as date_load
+        , convert_timezone('UTC', _fivetran_synced) AS date_load_utc
     FROM src_order_items
     )
 

@@ -43,7 +43,7 @@ sources:
               Each month for the budget -> End of the month.
           - name: _fivetran_synced
             description: >
-              date the data was loaded.
+              date at which the data was loaded.
             tests:
               - not_null
           

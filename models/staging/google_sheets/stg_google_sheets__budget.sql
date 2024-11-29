@@ -16,7 +16,7 @@ silver_budget AS (
         , product_id
         , quantity
         , month AS end_month_budgeted
-        , _fivetran_synced::TIMESTAMP_NTZ AS date_load_utc
+        , convert_timezone('UTC', _fivetran_synced) AS date_load_utc
     FROM src_budget
     )
 
