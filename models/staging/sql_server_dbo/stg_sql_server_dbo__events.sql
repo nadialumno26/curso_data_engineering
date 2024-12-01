@@ -1,4 +1,4 @@
-with 
+ with 
 
 src_events as (
 
