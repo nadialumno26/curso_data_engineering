@@ -1,0 +1,23 @@
+models:
+  - name: stg_google_sheets__budget
+    description: "stage table in silver for budget in google sheets"
+    columns:
+      - name: _row
+        data_type: number
+        description: "UUID for each budget entry"
+
+      - name: product_id
+        data_type: varchar
+        description: "UUID for each product budgeted"
+
+      - name: quantity
+        data_type: number
+        description: "total amount of unique product that is being budgeted"
+
+      - name: end_month_budgeted
+        data_type: date
+        description: "data at which each items is being budgeted (usually at the end of the month)"
+        
+      - name: data_load_utc
+        data_type: timestamp_ntz
+        description: "Date at which data is being loaded"

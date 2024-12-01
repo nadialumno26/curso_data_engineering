@@ -1,10 +1,9 @@
-
-WITH src_promos AS (
+WITH stg_sql_server_dbo__promos AS (
     SELECT * 
-    FROM {{ref('base_sql_server_dbo_promos') }}
+    FROM {{ ref('stg_sql_server_dbo__promos') }}
     ),
 
-silver_promos AS (
+dim_promos AS (
     SELECT
           promo_id
         , desc_promo
@@ -12,7 +11,7 @@ silver_promos AS (
         , promo_status
         , if_deleted
         , date_load_utc
-    FROM src_promos
+    FROM stg_sql_server_dbo__promos
     )
 
-SELECT * FROM silver_promos
+SELECT * FROM dim_promos
