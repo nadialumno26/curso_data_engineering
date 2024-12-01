@@ -64,6 +64,7 @@ models:
       - name: updated_at_utc
         data_type: timestamp_ntz
         description: "Timestamp of when the user was last updated in UTC"
+
       - name: if_deleted
         data_type: boolean
         description: "Marks/flags when row has been deleted without deleting row"
@@ -117,6 +118,8 @@ models:
       - name: inventory
         data_type: number
         description: "inventory count for each product"
+        tests:
+          - dbt_utils.at_least_one
 
       - name: if_deleted
         data_type: boolean
@@ -205,10 +208,10 @@ models:
         description: "UUID for the products purchased within the order"
 
       - name: quantity
-        tests:
-          - dbt_utils.at_least_one
         data_type: number
         description: "quantity of the product ordered"
+        tests:
+          - dbt_utils.at_least_one        
 
       - name: if_deleted
         data_type: boolean
