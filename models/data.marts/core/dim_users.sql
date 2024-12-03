@@ -1,4 +1,4 @@
-WITH stg_sql_server_dbo__users AS (
+WITH users AS (
     SELECT * 
     FROM {{ ref('stg_sql_server_dbo__users') }}
     ),
@@ -16,7 +16,7 @@ dim_users AS (
         , updated_at_utc
         , if_deleted
         , date_load_utc
-    FROM stg_sql_server_dbo__users
+    FROM users
     )
 
 SELECT * FROM dim_users
