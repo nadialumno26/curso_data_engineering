@@ -27,7 +27,7 @@ models:
         description: "UUID of the session that each user is using at that exact moment"
 
       - name: created_at_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date and hour of the creation of the event"
 
       - name: order_id
@@ -39,7 +39,7 @@ models:
         description: "Marks/flags when row has been deleted without deleting row"
       
       - name: date_load_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date the data was loaded. Transformed to UTC"
 
   - name: fct_orders
@@ -74,15 +74,15 @@ models:
         description: "UUID for the promo that corresponds to a product"     
 
       - name: order_created_at
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date and time that the order was created"
 
       - name: order_estimated_delivery
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date and time at which order is expected to arrive to its destination"
 
       - name: order_delivered_at
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date and time at which the order has arrived"  
 
       - name: order_cost_in_euros
@@ -114,7 +114,7 @@ models:
         description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date the data was loaded. Transformed to UTC"
 
   - name: dim_users
@@ -149,15 +149,15 @@ models:
         description: "user's phone number"
       
       - name: created_at_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "date and time of user's event creation"
       
       - name: updated_at_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "date and time of user's event creation"
 
       - name: updated_at_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "date and time of user's event creation"      
 
       - name: if_deleted
@@ -165,7 +165,7 @@ models:
         description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date the data was loaded. Transformed to UTC"
 
   - name: dim_shipping_service
@@ -184,7 +184,7 @@ models:
         description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date the data was loaded. Transformed to UTC"   
 
   - name: dim_promos
@@ -211,7 +211,7 @@ models:
         description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date the data was loaded. Transformed to UTC"      
 
   - name: dim_product
@@ -238,7 +238,7 @@ models:
         description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date the data was loaded. Transformed to UTC"    
       
   - name: dim_date
@@ -412,7 +412,7 @@ models:
         description: "date when the product is being budgeted"
 
       - name: date_load_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date the data was loaded. Transformed to UTC"
 
   - name: dim_addresses
@@ -447,5 +447,5 @@ models:
         description: "Marks/flags when row has been deleted without deleting row"
 
       - name: date_load_utc
-        data_type: timestamp_ntz
+        data_type: datetime
         description: "Date the data was loaded. Transformed to UTC"  

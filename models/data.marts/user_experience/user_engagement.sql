@@ -20,7 +20,7 @@ SELECT
     , u.last_name
     , ed.start_of_session
     , ed.end_of_session
-    , DATEDIFF('hour', 'ed.start_of_session','ed.end_of_session') AS session_duration_hours
+    , DATEDIFF('hour', ed.start_of_session,ed.end_of_session) AS session_duration_hours
     , ed.pages_visited
     , ed.page_view_events
     , ed.add_to_cart_events

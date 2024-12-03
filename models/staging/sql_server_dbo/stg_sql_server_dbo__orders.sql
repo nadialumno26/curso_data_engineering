@@ -16,7 +16,7 @@ silver_orders AS (
         , order_cost_in_euros
         , shipping_cost_in_euros
         , order_total_in_euros
-        , shipping_service
+        , {{ dbt_utils.generate_surrogate_key(['shipping_service']) }} as shipping_service_id
         , tracking_id
         , order_status
         , if_deleted

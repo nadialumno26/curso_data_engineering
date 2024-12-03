@@ -1,0 +1,86 @@
+models:
+  - name: base_sql_server_dbo_orders
+    description: "base model for multiple transformations in orders"
+    columns:
+      - name: order_id
+        data_type: varchar
+        description: "UUID for each order entry"
+      
+      - name: user_id
+        data_type: varchar
+        description: "UUID for each user that purchased"
+
+      - name: address_id
+        data_type: varchar
+        description: "UUID for each address entry needed for shipping"
+
+      - name: promo_id
+        data_type: varchar
+        description: "Unique identifier for the promotional offer applied to the order."
+
+      - name: created_at_utc
+        data_type: timestamp
+        description: "Timestamp when the order was created in UTC."
+
+      - name: estimated_delivery_at_utc
+        data_type: timestamp
+        description: "Estimated delivery date and time of the order in UTC."
+
+      - name: delivered_at_utc
+        data_type: timestamp
+        description: "Actual delivery date and time of the order in UTC."
+
+      - name: order_cost_in_euros
+        data_type: decimal(10,2)
+        description: "The cost of the order before taxes and shipping in Euros."
+
+      - name: order_total_in_euros
+        data_type: decimal(10,2)
+        description: "The total cost of the order including taxes and shipping in Euros."
+
+      - name: shipping_cost_in_euros
+        data_type: decimal(10,2)
+        description: "The cost of shipping the order in Euros."
+
+      - name: shipping_service
+        data_type: varchar
+        description: "The shipping service used for delivering the order."
+
+      - name: tracking_id
+        data_type: varchar
+        description: "Unique tracking identifier for the shipped order."
+
+      - name: order_status
+        data_type: varchar
+        description: "Current status of the order (e.g., pending, shipped, delivered, canceled)."
+
+      - name: if_deleted
+        data_type: boolean
+        description: "Marks/flags when row has been deleted without deleting row"
+
+      - name: date_load_utc
+        data_type: timestamp
+        description: "Date when the data was loaded in timezone"
+
+  - name: base_sql_server_dbo_promos
+    description: "base model for multiple transformations in promos"
+    columns:
+      - name: promo_id
+        data_type: varchar
+        description: "UUID for each promo. It was created with a hash"
+
+      - name: discount_in_euros
+        data_type: number
+        description: "The discount amount or percentage applied by the promo."
+
+      - name: promo_status
+        data_type: varchar
+        description: "Current status of the promo (e.g., active, expired, pending)."
+
+      - name: if_deleted
+        data_type: boolean
+        description: "Marks/flags when row has been deleted without deleting row"
+
+      - name: date_load_utc
+        data_type: timestamp
+        description: "Date when the data was loaded in UTC"

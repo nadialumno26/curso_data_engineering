@@ -172,9 +172,9 @@ models:
         data_type: float
         description: "shipping costof the order"
 
-      - name: shipping_service
+      - name: shipping_service_id
         data_type: varchar
-        description: "shipping service provider"
+        description: "Unique identifier for the shipping service provider used for delivering the order."
 
       - name: tracking_id
         data_type: varchar

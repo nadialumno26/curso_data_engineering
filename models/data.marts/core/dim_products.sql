@@ -10,7 +10,7 @@ dim_products AS (
         , price_in_euro
         , inventory 
         , if_deleted
-        , date_load_utc
+        , cast (date_load_utc AS datetime) AS date_load_utc
     FROM stg_sql_server_dbo__products
 )
 

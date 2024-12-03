@@ -30,4 +30,14 @@ are this table's primary key
 
 {% enddocs %}
 
+{% docs is_valid_email_test %}
+	
+a test inserted in the dim_users that ensures that the email given by the user is written correctly
 
+{% enddocs %}
+
+{% docs users_timestamp_snp %}
+	
+snapshot done in the user's source, the client wants to keep their user's historical information
+
+{% enddocs %}

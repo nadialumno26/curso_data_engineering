@@ -1,3 +1,4 @@
+
 WITH fct_events AS (
             SELECT *
             FROM {{ref ('stg_sql_server_dbo__events')}}

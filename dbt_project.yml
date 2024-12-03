@@ -36,11 +36,12 @@ models:
     # Applies to all files under models/example/
 
     staging:
-      +materialized: view
+      +materialized: table
       +database: "{{ env_var('DBT_ENVIRONMENTS') }}_SILVER_DB"
       google_sheets:
         +schema: google_sheets
       sql_server_dbo:
+        +materialized: table
         +schema: sql_server_dbo
 
     data.marts:

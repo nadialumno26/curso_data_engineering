@@ -10,7 +10,7 @@ WITH orders AS (
                 , order_cost_in_euros
                 , shipping_cost_in_euros AS order_shipping_cost
                 , order_total_in_euros
-                , shipping_service
+                , shipping_service_id
                 , tracking_id AS order_tracking_id
                 , order_status
                 , if_deleted
@@ -32,7 +32,7 @@ SELECT
         , o.order_cost_in_euros
         , o.order_shipping_cost
         , o.order_total_in_euros
-        , o.shipping_service
+        , o.shipping_service_id
         , o.order_tracking_id
         , o.order_status
         , o.if_deleted
