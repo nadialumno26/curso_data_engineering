@@ -97,13 +97,13 @@ models:
         data_type: float
         description: "cost of the order in total (include order cost and shipping cost)" 
 
-      - name: shipping_service
+      - name: shipping_service_id
         data_type: varchar
-        description: "description of the company handling the shipping"
+        description: "UUID for each shipping service entry"
 
       - name: order_tracking_id
         data_type: varchar
-        description: "UUID of the tracking for the shipping"
+        description: "UUID tracking the order for the shipping"
 
       - name: order_status
         data_type: varchar
@@ -214,7 +214,7 @@ models:
         data_type: datetime
         description: "Date the data was loaded. Transformed to UTC"      
 
-  - name: dim_product
+  - name: dim_products
     description: "fact table for the products being sold"
     columns:
       - name: product_id
@@ -407,10 +407,6 @@ models:
         data_type: date
         description: "date when the product is being budgeted"
 
-      - name: end_month_budgeted
-        data_type: date
-        description: "date when the product is being budgeted"
-
       - name: date_load_utc
         data_type: datetime
         description: "Date the data was loaded. Transformed to UTC"
@@ -421,10 +417,6 @@ models:
       - name: address_id
         data_type: varchar
         description: "UUID for each address"
-
-      - name: address
-        data_type: varchar
-        description: "address including number and street name"
 
       - name: address
         data_type: varchar
