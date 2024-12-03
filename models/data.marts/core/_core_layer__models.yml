@@ -442,7 +442,7 @@ models:
         data_type: varchar
         description: "country name corresponding to each address"
 
-            - name: if_deleted
+      - name: if_deleted
         data_type: boolean
         description: "Marks/flags when row has been deleted without deleting row"
 

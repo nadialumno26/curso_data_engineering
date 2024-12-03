@@ -43,7 +43,7 @@ models:
       sql_server_dbo:
         +schema: sql_server_dbo
 
-    data.marts:
+    marts:
       +materialized: table
       +database: "{{ env_var('DBT_ENVIRONMENTS') }}_GOLD_DB"
       core:
