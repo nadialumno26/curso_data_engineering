@@ -3,8 +3,8 @@ WITH shipping_information AS (
           a.state
         , o.shipping_service
         , DATEDIFF (hour, order_estimated_delivery, order_delivered_at) AS hours_taken_to_deliver
-    FROM fct_orders o
-    LEFT JOIN dim_addresses a
+    FROM {{ref('fct_orders')}} o
+    LEFT JOIN {{ref('dim_addresses')}} a
     ON o.address_id = a.address_id
     GROUP BY 1,2,3
 ),

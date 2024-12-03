@@ -3,10 +3,10 @@ WITH user_order_counts AS (
         u.user_id
         , p.desc_product
         , COUNT(order_id) AS order_count
-    FROM fct_orders o
-    JOIN dim_users u 
+    FROM {{ref('fct_orders')}} o
+    JOIN {{ref('dim_users')}} u 
     ON u.user_id = o.user_id
-    LEFT JOIN dim_products p
+    LEFT JOIN {{ref('dim_products')}} p
     ON o.product_id = p.product_id
     GROUP BY u.user_id, p.desc_product
 )

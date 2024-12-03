@@ -1,23 +1,21 @@
-WITH promo_sales AS (
+WITH product_sales AS (
     SELECT
-        pr.promo_id
-        , pr.desc_promo
-        , pr.discount_in_euros
+        p.product_id
+        , p.desc_product
         , round(SUM(o.order_total_in_euros), 2) AS total_sales
         , round(AVG(o.order_total_in_euros), 2) AS average_sales
         , round(COUNT(o.order_id), 2) AS total_orders
     FROM {{ref ('fct_orders')}} o
-    LEFT JOIN {{ref ('dim_promos')}} pr
-        ON o.promo_id = pr.promo_id
-    GROUP BY 1,2,3
+    LEFT JOIN {{ref ('dim_products')}} p
+        ON o.product_id = p.product_id
+    GROUP BY 1,2
 )
 
 SELECT 
-     desc_promo
-    , discount_in_euros
+     desc_product
     , total_sales
     , average_sales
     , total_orders
-FROM promo_sales
-WHERE desc_promo IS NOT NULL
-ORDER BY 3 DESC
+FROM product_sales
+WHERE desc_product IS NOT NULL
+ORDER BY 2 DESC

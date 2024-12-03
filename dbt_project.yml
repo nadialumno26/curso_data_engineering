@@ -43,16 +43,18 @@ models:
       sql_server_dbo:
         +schema: sql_server_dbo
 
-    marts:
+    data.marts:
       +materialized: table
       +database: "{{ env_var('DBT_ENVIRONMENTS') }}_GOLD_DB"
       core:
         +schema: core
+        +database: "{{ env_var('DBT_ENVIRONMENTS') }}_GOLD_DB"
 
 seeds:
   +schema: seed_data
   +database: "{{ env_var('DBT_ENVIRONMENTS') }}_BRONZE_DB"        
 snapshots:
   +transient: false
-  +target_database: "{{ env_var('DBT_ENVIRONMENTS') }}_SILVER_DB"
+  +target_database: "{{ env_var('DBT_ENVIRONMENTS') }}_BRONZE_DB"
   +target_schema: snapshots
+
