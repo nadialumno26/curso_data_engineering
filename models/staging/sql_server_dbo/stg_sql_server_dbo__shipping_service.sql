@@ -6,7 +6,7 @@
 
 WITH src_orders AS (
     SELECT * 
-    FROM {{ source('sql_server_dbo', 'orders') }}
+    FROM {{ ref('base_sql_server_dbo_orders') }}
     ),
 
 silver_shipping_service AS (
@@ -15,8 +15,8 @@ silver_shipping_service AS (
         , CASE WHEN shipping_service = '' THEN 'not_assigned'
                 ELSE shipping_service
             END AS shipping_service
-        , _fivetran_deleted AS if_deleted
-        , convert_timezone('UTC',_fivetran_synced) AS date_load_utc
+        , if_deleted
+        , date_load_utc
     FROM src_orders
     )
 

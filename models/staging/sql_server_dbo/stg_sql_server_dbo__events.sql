@@ -1,3 +1,9 @@
+{{
+    config(
+        materialized='incremental'
+        , unique_key = 'event_id'
+    )
+}}
  with 
 
 src_events as (
@@ -25,3 +31,9 @@ silver_events as (
 )
 
 select * from silver_events
+
+{% if is_incremental() %}
+
+where date_load_utc > (select coalesce(max(date_load_utc),'2024-01-01') from {{ this }} )
+
+{% endif %}

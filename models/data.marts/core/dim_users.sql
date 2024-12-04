@@ -1,4 +1,4 @@
-WITH stg_sql_server_dbo__users AS (
+WITH users AS (
     SELECT * 
     FROM {{ ref('stg_sql_server_dbo__users') }}
     ),
@@ -10,11 +10,13 @@ dim_users AS (
         , first_name
         , last_name
         , email
+        , coalesce (regexp_like(email, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$')= true,false) as is_valid_email_address
         , phone_number
         , created_at_utc
         , updated_at_utc
-        , date_load
-    FROM stg_sql_server_dbo__users
+        , if_deleted
+        , date_load_utc
+    FROM users
     )
 
 SELECT * FROM dim_users

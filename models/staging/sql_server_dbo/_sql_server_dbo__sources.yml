@@ -14,6 +14,7 @@ sources:
     freshness:
       warn_after: {count: 24, period: hour}
       error_after: {count: 48, period: hour}
+    
 
     tables:
 
@@ -30,6 +31,8 @@ sources:
               area code for each address.
 
           - name: country
+            description: >
+              country for each address.
 
           - name: address
             description: >
@@ -40,8 +43,12 @@ sources:
               state names inside the country.
 
           - name: _fivetran_deleted
+            description: > 
+              Marks/flags when row has been deleted without deleting row
 
           - name: _fivetran_synced
+            description: >
+              Date when the data was loaded in UTC
             tests:
              - not_null
 
@@ -93,10 +100,14 @@ sources:
               UUID for each order (only entries for add_to_cart and checkout event_type)
 
           - name: _fivetran_deleted
-
+            description: > 
+              Marks/flags when row has been deleted without deleting row
+              
           - name: _fivetran_synced
+            description: >
+              "Date when the data was loaded in UTC"
             tests:
-              - not_null
+             - not_null
     
       - name: orders
         loaded_at_field: _fivetran_synced
@@ -131,12 +142,16 @@ sources:
               Time at which the order was placed
 
           - name: promo_id
+            description: >
+              UUID for the promo being used
             tests:
               - relationships:
                   to: source('sql_server_db','promos')
                   field: promo_id
 
           - name: estimated_delivery
+            description: >
+              Time at which the order is estimated to arrive to costumer
 
           - name: order_cost
             description: >
@@ -159,6 +174,8 @@ sources:
               - not_null
 
           - name: delivered_at
+            description: >
+              Time at which the order has been actually delivered to the costumer
 
           - name: tracking_id
             description: >
@@ -169,10 +186,14 @@ sources:
               state of the order in the manufacturing process
 
           - name: _fivetran_deleted
-
+            description: > 
+              Marks/flags when row has been deleted without deleting row
+              
           - name: _fivetran_synced
+            description: >
+              Date when the data was loaded in UTC
             tests:
-              - not_null
+             - not_null
 
       - name: order_items
         loaded_at_field: _fivetran_synced
@@ -184,6 +205,8 @@ sources:
                   field: order_id
 
           - name: product_id
+            description: >
+              UUID for each product entry 
             tests:
               - relationships:
                   to: source('sql_server_db','products')
@@ -194,15 +217,21 @@ sources:
               total number of items that have been ordered
 
           - name: _fivetran_deleted
-
+            description: > 
+              Marks/flags when row has been deleted without deleting row
+              
           - name: _fivetran_synced
+            description: >
+              Date when the data was loaded in UTC
             tests:
-               - not_null
+             - not_null
 
       - name: products
         loaded_at_field: _fivetran_synced
         columns:
           - name: product_id
+            description: >
+              UUID for each product entry  
             tests:
               - unique
               - not_null
@@ -220,15 +249,21 @@ sources:
               amount of unique product left after purchases
 
           - name: _fivetran_deleted
-
+            description: > 
+              Marks/flags when row has been deleted without deleting row
+              
           - name: _fivetran_synced
+            description: >
+              Date when the data was loaded in UTC
             tests:
-              - not_null
+             - not_null
 
       - name: promos
         loaded_at_field: _fivetran_synced
         columns:
           - name: promo_id
+            description: >
+              UUID for each promo entry
             tests:
               - unique
               - not_null
@@ -242,15 +277,21 @@ sources:
               whether discount is active or inactive
 
           - name: _fivetran_deleted
-
+            description: > 
+              Marks/flags when row has been deleted without deleting row
+              
           - name: _fivetran_synced
+            description: >
+              Date when the data was loaded in UTC
             tests:
-              - not_null
+             - not_null
 
       - name: users
         loaded_at_field: _fivetran_synced
         columns:
           - name: user_id
+            description: >
+              UUID for each unique user
             tests:
               - unique
               - not_null
@@ -260,25 +301,39 @@ sources:
               when info about the user is updated
 
           - name: address_id
+            description: >
+              UUID for user's address
             tests:
               - relationships:
                   to: source('sql_server_db','address')
                   field: address_id
 
-          - name: first_name     
+          - name: first_name
+            description: >
+              user's first name
 
           - name: last_name
+            description: >
+              user's last name
 
           - name: created_at
             description: >
               when the user's profile was created
 
           - name: phone_number
+            description: >
+              user's phone number
 
-          - name: email    
+          - name: email
+            description: >
+              user's email
 
           - name: _fivetran_deleted
-
+            description: > 
+              Marks/flags when row has been deleted without deleting row
+              
           - name: _fivetran_synced
+            description: >
+              "Date when the data was loaded in UTC"
             tests:
-              - not_null
+             - not_null

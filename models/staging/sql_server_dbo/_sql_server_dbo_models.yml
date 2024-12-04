@@ -64,6 +64,7 @@ models:
       - name: updated_at_utc
         data_type: timestamp_ntz
         description: "Timestamp of when the user was last updated in UTC"
+
       - name: if_deleted
         data_type: boolean
         description: "Marks/flags when row has been deleted without deleting row"
@@ -117,6 +118,8 @@ models:
       - name: inventory
         data_type: number
         description: "inventory count for each product"
+        tests:
+          - dbt_utils.at_least_one
 
       - name: if_deleted
         data_type: boolean
@@ -169,9 +172,9 @@ models:
         data_type: float
         description: "shipping costof the order"
 
-      - name: shipping_service
+      - name: shipping_service_id
         data_type: varchar
-        description: "shipping service provider"
+        description: "Unique identifier for the shipping service provider used for delivering the order."
 
       - name: tracking_id
         data_type: varchar
@@ -205,10 +208,10 @@ models:
         description: "UUID for the products purchased within the order"
 
       - name: quantity
-        tests:
-          - dbt_utils.at_least_one
         data_type: number
         description: "quantity of the product ordered"
+        tests:
+          - dbt_utils.at_least_one        
 
       - name: if_deleted
         data_type: boolean
@@ -232,6 +235,9 @@ models:
       - name: event_type
         data_type: varchar
         description: "type of event"
+        tests:
+           - dbt_expectations.expect_column_values_to_be_in_set:
+               value_set: ['page_view','add_to_cart','checkout','package_shipped']
 
       - name: user_id
         data_type: varchar
@@ -266,7 +272,7 @@ models:
     columns:
       - name: shipping_service_id
         data_type: varchar
-        description: "UUID for each shipping service company described"
+        description: "UUID for each shipping service company described (surrogate_key)"
 
       - name: shipping_service
         data_type: varchar

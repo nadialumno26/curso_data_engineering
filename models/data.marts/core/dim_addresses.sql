@@ -1,6 +1,6 @@
-WITH stg_sql_server_dbo__products AS (
+WITH stg_sql_server_dbo__addresses AS (
     SELECT * 
-    FROM {{ ref('stg_sql_server_dbo__products') }}
+    FROM {{ ref('stg_sql_server_dbo__addresses') }}
     ),
 
 dim_addresses AS (
@@ -12,7 +12,7 @@ dim_addresses AS (
         , country
         , if_deleted
         , date_load_utc
-    FROM stg_sql_server_dbo__products
+    FROM stg_sql_server_dbo__addresses
 )
 
 SELECT * FROM dim_addresses

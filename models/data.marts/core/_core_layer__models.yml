@@ -1,0 +1,443 @@
+models:
+  - name: fct_events
+    description: "fact table for the events in a website"
+    columns:
+      - name: event_id
+        data_type: varchar
+        description: "UUID for each event entry"
+
+      - name: page_url
+        data_type: varchar
+        description: "name of the URL used in each event"
+
+      - name: event_type
+        data_type: varchar
+        description: "description of the type of event the user is performing"
+
+      - name: user_id
+        data_type: varchar
+        description: "UUID of the user performing each event"
+
+      - name: product_id
+        data_type: varchar
+        description: "UUID of the product the user is looking at in each event"  
+
+      - name: session_id
+        data_type: varchar
+        description: "UUID of the session that each user is using at that exact moment"
+
+      - name: created_at_utc
+        data_type: datetime
+        description: "Date and hour of the creation of the event"
+
+      - name: order_id
+        data_type: varchar
+        description: "UUID of the order if user makes a purchase"
+      
+      - name: if_deleted
+        data_type: boolean
+        description: "Marks/flags when row has been deleted without deleting row"
+      
+      - name: date_load_utc
+        data_type: datetime
+        description: "Date the data was loaded. Transformed to UTC"
+
+  - name: fct_orders
+    description: "fact table for the orders made by a costumer. It is a combination of orders and order_items"
+    columns:
+      - name: order_items_id
+        data_type: varchar
+        description: "UUID for each product that has been purchased"
+
+      - name: order_id
+        data_type: varchar
+        description: "UUID for each order"
+      
+      - name: product_id
+        data_type: varchar
+        description: "UUID for each product"
+      
+      - name: order_quantity
+        data_type: number
+        description: "whole number showing the quantity purchased of a product" 
+
+      - name: user_id
+        data_type: varchar
+        description: "UUID for each user making a purchase"
+      
+      - name: address_id
+        data_type: varchar
+        description: "UUID for the address that belongs to a specific user"
+      
+      - name: promo_id
+        data_type: varchar
+        description: "UUID for the promo that corresponds to a product"     
+
+      - name: order_created_at
+        data_type: datetime
+        description: "Date and time that the order was created"
+
+      - name: order_estimated_delivery
+        data_type: datetime
+        description: "Date and time at which order is expected to arrive to its destination"
+
+      - name: order_delivered_at
+        data_type: datetime
+        description: "Date and time at which the order has arrived"  
+
+      - name: order_cost_in_euros
+        data_type: float
+        description: "cost of the order (does not include shipping cost)" 
+
+      - name: order_shipping_cost
+        data_type: float
+        description: "cost of the shipping (does not include order cost)" 
+  
+      - name: order_total_in_euros
+        data_type: float
+        description: "cost of the order in total (include order cost and shipping cost)" 
+
+      - name: shipping_service_id
+        data_type: varchar
+        description: "UUID for each shipping service entry"
+
+      - name: order_tracking_id
+        data_type: varchar
+        description: "UUID tracking the order for the shipping"
+
+      - name: order_status
+        data_type: varchar
+        description: "status of the order. It can be preparing, shipped or delivered"
+
+      - name: if_deleted
+        data_type: boolean
+        description: "Marks/flags when row has been deleted without deleting row"
+
+      - name: date_load_utc
+        data_type: datetime
+        description: "Date the data was loaded. Transformed to UTC"
+
+  - name: dim_users
+    description: "fact table for the users that purchase the goods"
+    columns:
+      - name: user_id
+        data_type: varchar
+        description: "UUID for each user"
+
+      - name: address_id
+        data_type: varchar
+        description: "UUID for the address of each user"
+      
+      - name: first_name
+        data_type: varchar
+        description: "user's first name"
+
+      - name: last_name
+        data_type: varchar
+        description: "user's last name"
+      
+      - name: email
+        data_type: varchar
+        description: "user's email"
+      
+      - name: is_valid_email_address
+        data_type: boolean
+        description: "test done on each user's email to make sure if spelled correctly"
+
+      - name: phone_number
+        data_type: varchar
+        description: "user's phone number"
+      
+      - name: created_at_utc
+        data_type: datetime
+        description: "date and time of user's event creation"
+      
+      - name: updated_at_utc
+        data_type: datetime
+        description: "date and time of user's event creation"
+
+      - name: updated_at_utc
+        data_type: datetime
+        description: "date and time of user's event creation"      
+
+      - name: if_deleted
+        data_type: boolean
+        description: "Marks/flags when row has been deleted without deleting row"
+
+      - name: date_load_utc
+        data_type: datetime
+        description: "Date the data was loaded. Transformed to UTC"
+
+  - name: dim_shipping_service
+    description: "fact table for the shipping service that ship the goods"
+    columns:
+      - name: shipping_service_id
+        data_type: varchar
+        description: "UUID for each shipping entry"
+      
+      - name: shipping_service
+        data_type: varchar
+        description: "Company in charge of shipping" 
+
+      - name: if_deleted
+        data_type: boolean
+        description: "Marks/flags when row has been deleted without deleting row"
+
+      - name: date_load_utc
+        data_type: datetime
+        description: "Date the data was loaded. Transformed to UTC"   
+
+  - name: dim_promos
+    description: "fact table for the promos that generate a discount in order's cost"
+    columns:
+      - name: promo_id
+        data_type: varchar
+        description: "UUID for each shipping entry"
+      
+      - name: desc_promo
+        data_type: varchar
+        description: "description of the type of promo that is being used"
+      
+      - name: discount_in_euros
+        data_type: varchar
+        description: "amount of euros being discounted from the order cost"
+
+      - name: promo_status
+        data_type: varchar
+        description: "whether the promo is active or inactive"
+      
+      - name: if_deleted
+        data_type: boolean
+        description: "Marks/flags when row has been deleted without deleting row"
+
+      - name: date_load_utc
+        data_type: datetime
+        description: "Date the data was loaded. Transformed to UTC"      
+
+  - name: dim_products
+    description: "fact table for the products being sold"
+    columns:
+      - name: product_id
+        data_type: varchar
+        description: "UUID for each product"
+      
+      - name: desc_product
+        data_type: varchar
+        description: "description of the product"
+
+      - name: price_in_euro
+        data_type: float
+        description: "price corresponding each product"
+
+      - name: inventory
+        data_type: number
+        description: "stock available corresponding each product"
+
+      - name: if_deleted
+        data_type: boolean
+        description: "Marks/flags when row has been deleted without deleting row"
+
+      - name: date_load_utc
+        data_type: datetime
+        description: "Date the data was loaded. Transformed to UTC"    
+      
+  - name: dim_date
+    description: "Dimension table for date attributes, including standard calendar and ISO week date details."
+    columns:
+      - name: date_day
+        description: "The current date for the record."
+        data_type: date
+
+      - name: prior_date_day
+        description: "The date for the previous day."
+        data_type: date
+
+      - name: next_date_day
+        description: "The date for the next day."
+        data_type: date
+
+      - name: prior_year_date_day
+        description: "The same day in the prior year."
+        data_type: date
+
+      - name: prior_year_over_year_date_day
+        description: "The same day in the prior year, accounting for year-over-year alignment."
+        data_type: date
+
+      - name: day_of_week
+        description: "Numeric representation of the day of the week (1=Sunday, 7=Saturday)."
+        data_type: number
+
+      - name: day_of_week_iso
+        description: "ISO numeric representation of the day of the week (1=Monday, 7=Sunday)."
+        data_type: number
+
+      - name: day_of_week_name
+        description: "Full name of the day of the week."
+        data_type: varchar
+
+      - name: day_of_week_name_short
+        description: "Abbreviated name of the day of the week (e.g., Mon, Tue)."
+        data_type: varchar
+
+      - name: day_of_month
+        description: "The numeric day of the month."
+        data_type: number
+
+      - name: day_of_year
+        description: "The numeric day of the year."
+        data_type: number
+
+      - name: week_start_date
+        description: "The date of the start of the current week."
+        data_type: date
+
+      - name: week_end_date
+        description: "The date of the end of the current week."
+        data_type: date
+
+      - name: prior_year_week_start_date
+        description: "The date of the start of the same week in the prior year."
+        data_type: date
+
+      - name: prior_year_week_end_date
+        description: "The date of the end of the same week in the prior year."
+        data_type: date
+
+      - name: week_of_year
+        description: "The week number of the year."
+        data_type: number
+
+      - name: iso_week_start_date
+        description: "The ISO-standard date for the start of the current ISO week."
+        data_type: date
+
+      - name: iso_week_end_date
+        description: "The ISO-standard date for the end of the current ISO week."
+        data_type: date
+
+      - name: prior_year_iso_week_start_date
+        description: "The ISO-standard start date of the same week in the prior year."
+        data_type: date
+
+      - name: prior_year_iso_week_end_date
+        description: "The ISO-standard end date of the same week in the prior year."
+        data_type: date
+
+      - name: iso_week_of_year
+        description: "The ISO-standard week number of the year."
+        data_type: number
+
+      - name: prior_year_week_of_year
+        description: "The week number of the same week in the prior year."
+        data_type: number
+
+      - name: prior_year_iso_week_of_year
+        description: "The ISO-standard week number of the same week in the prior year."
+        data_type: number
+
+      - name: month_of_year
+        description: "The numeric month of the year (1=January, 12=December)."
+        data_type: number
+
+      - name: month_name
+        description: "The full name of the month."
+        data_type: varchar
+
+      - name: month_name_short
+        description: "The abbreviated name of the month (e.g., Jan, Feb)."
+        data_type: varchar
+
+      - name: month_start_date
+        description: "The date of the start of the current month."
+        data_type: date
+
+      - name: month_end_date
+        description: "The date of the end of the current month."
+        data_type: date
+
+      - name: prior_year_month_start_date
+        description: "The date of the start of the same month in the prior year."
+        data_type: date
+
+      - name: prior_year_month_end_date
+        description: "The date of the end of the same month in the prior year."
+        data_type: date
+
+      - name: quarter_of_year
+        description: "The numeric quarter of the year (1-4)."
+        data_type: number
+
+      - name: quarter_start_date
+        description: "The date of the start of the current quarter."
+        data_type: date
+
+      - name: quarter_end_date
+        description: "The date of the end of the current quarter."
+        data_type: date
+
+      - name: year_number
+        description: "The calendar year."
+        data_type: number
+
+      - name: year_start_date
+        description: "The date of the start of the current year."
+        data_type: date
+
+      - name: year_end_date
+        description: "The date of the end of the current year."
+        data_type: date
+
+  - name: dim_budget
+    description: "fact table for the products' budget. Usually done at the end of the month"
+    columns:
+      - name: _row
+        data_type: number
+        description: "number for the row number"
+
+      - name: product_id
+        data_type: varchar
+        description: "UUID for each product"
+
+      - name: quantity
+        data_type: number
+        description: "quantity being budgeted for each product"
+
+      - name: end_month_budgeted
+        data_type: date
+        description: "date when the product is being budgeted"
+
+      - name: date_load_utc
+        data_type: datetime
+        description: "Date the data was loaded. Transformed to UTC"
+
+  - name: dim_addresses
+    description: "fact table for the user's address"
+    columns:
+      - name: address_id
+        data_type: varchar
+        description: "UUID for each address"
+
+      - name: address
+        data_type: varchar
+        description: "address including number and street name"
+
+      - name: zipcode
+        data_type: varchar
+        description: "zipcode number for each address"
+
+      - name: state
+        data_type: varchar
+        description: "state name corresponding to each address"
+
+      - name: country
+        data_type: varchar
+        description: "country name corresponding to each address"
+
+      - name: if_deleted
+        data_type: boolean
+        description: "Marks/flags when row has been deleted without deleting row"
+
+      - name: date_load_utc
+        data_type: datetime
+        description: "Date the data was loaded. Transformed to UTC"  

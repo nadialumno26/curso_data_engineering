@@ -8,7 +8,7 @@ dim_budget AS (
           _row
         , product_id
         , quantity
-        , month
+        , end_month_budgeted
         , date_load_utc
     FROM stg_google_sheets__budget
     )
