@@ -31,9 +31,18 @@ snapshot done in the user's source, the client wants to keep their user's histor
 
 {% enddocs %}
 
-{% docs __dbt_utils__ %}
-# Utility macros
-Our dbt project heavily uses this suite of utility macros, especially:
-- `surrogate_key`
-- `at_least_one test`
+{% docs dbt_utils %}
+
+- `surrogate_key` to create a randomly selected id
+- `at_least_one test` a test to ensure that at least one "item" is a data entry, used 
+                        for inventory and quantity
+
+
+{% enddocs %}
+
+{% docs dbt_expectations %}
+
+- `expect_column_values_to_be_in_set` test where the approved value_set is: 
+                                    'page_view', 'add_to_cart', 'checkout', 'package_shipped'
+                                    
 {% enddocs %}
