@@ -9,7 +9,7 @@ b_orders AS (
         , user_id
         , address_id
         , promo_id
-        , convert_timezone('UTC',created_at) AS created_at_utc
+        , cast (created_at AS date) AS created_at_utc
         , convert_timezone('UTC', estimated_delivery_at) AS estimated_delivery_at_utc
         , convert_timezone('UTC',delivered_at) AS delivered_at_utc
         , order_cost AS order_cost_in_euros

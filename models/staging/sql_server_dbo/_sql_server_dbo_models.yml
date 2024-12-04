@@ -157,7 +157,7 @@ models:
         description: "Timestamp estimating when order is expected to get delivered in UTC"
 
       - name: delivered_at_utc
-        data_type: timestamp_ntz
+        data_type: date
         description: "Timestamp of when the order was delivered"
 
       - name: order_cost_in_euros

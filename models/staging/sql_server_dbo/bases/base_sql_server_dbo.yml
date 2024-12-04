@@ -19,7 +19,7 @@ models:
         description: "Unique identifier for the promotional offer applied to the order."
 
       - name: created_at_utc
-        data_type: timestamp
+        data_type: date
         description: "Timestamp when the order was created in UTC."
 
       - name: estimated_delivery_at_utc
