@@ -142,12 +142,16 @@ sources:
               Time at which the order was placed
 
           - name: promo_id
+            description: >
+              UUID for the promo being used
             tests:
               - relationships:
                   to: source('sql_server_db','promos')
                   field: promo_id
 
           - name: estimated_delivery
+            description: >
+              Time at which the order is estimated to arrive to costumer
 
           - name: order_cost
             description: >
@@ -170,6 +174,8 @@ sources:
               - not_null
 
           - name: delivered_at
+            description: >
+              Time at which the order has been actually delivered to the costumer
 
           - name: tracking_id
             description: >
@@ -185,7 +191,7 @@ sources:
               
           - name: _fivetran_synced
             description: >
-              "Date when the data was loaded in UTC"
+              Date when the data was loaded in UTC
             tests:
              - not_null
 
@@ -199,6 +205,8 @@ sources:
                   field: order_id
 
           - name: product_id
+            description: >
+              UUID for each product entry 
             tests:
               - relationships:
                   to: source('sql_server_db','products')
@@ -214,7 +222,7 @@ sources:
               
           - name: _fivetran_synced
             description: >
-              "Date when the data was loaded in UTC"
+              Date when the data was loaded in UTC
             tests:
              - not_null
 
@@ -222,6 +230,8 @@ sources:
         loaded_at_field: _fivetran_synced
         columns:
           - name: product_id
+            description: >
+              UUID for each product entry  
             tests:
               - unique
               - not_null
@@ -244,7 +254,7 @@ sources:
               
           - name: _fivetran_synced
             description: >
-              "Date when the data was loaded in UTC"
+              Date when the data was loaded in UTC
             tests:
              - not_null
 
@@ -252,6 +262,8 @@ sources:
         loaded_at_field: _fivetran_synced
         columns:
           - name: promo_id
+            description: >
+              UUID for each promo entry
             tests:
               - unique
               - not_null
@@ -270,7 +282,7 @@ sources:
               
           - name: _fivetran_synced
             description: >
-              "Date when the data was loaded in UTC"
+              Date when the data was loaded in UTC
             tests:
              - not_null
 
@@ -278,6 +290,8 @@ sources:
         loaded_at_field: _fivetran_synced
         columns:
           - name: user_id
+            description: >
+              UUID for each unique user
             tests:
               - unique
               - not_null
@@ -287,6 +301,8 @@ sources:
               when info about the user is updated
 
           - name: address_id
+            description: >
+              UUID for user's address
             tests:
               - relationships:
                   to: source('sql_server_db','address')

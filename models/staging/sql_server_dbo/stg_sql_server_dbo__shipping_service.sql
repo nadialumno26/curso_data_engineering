@@ -15,8 +15,8 @@ silver_shipping_service AS (
         , CASE WHEN shipping_service = '' THEN 'not_assigned'
                 ELSE shipping_service
             END AS shipping_service
-        , _fivetran_deleted AS if_deleted
-        , convert_timezone('UTC',_fivetran_synced) AS date_load_utc
+        , if_deleted
+        , date_load_utc
     FROM src_orders
     )
 

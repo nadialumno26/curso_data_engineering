@@ -61,26 +61,3 @@ models:
       - name: date_load_utc
         data_type: timestamp
         description: "Date when the data was loaded in timezone"
-
-  - name: base_sql_server_dbo_promos
-    description: "base model for multiple transformations in promos"
-    columns:
-      - name: promo_id
-        data_type: varchar
-        description: "UUID for each promo. It was created with a hash"
-
-      - name: discount_in_euros
-        data_type: number
-        description: "The discount amount or percentage applied by the promo."
-
-      - name: promo_status
-        data_type: varchar
-        description: "Current status of the promo (e.g., active, expired, pending)."
-
-      - name: if_deleted
-        data_type: boolean
-        description: "Marks/flags when row has been deleted without deleting row"
-
-      - name: date_load_utc
-        data_type: timestamp
-        description: "Date when the data was loaded in UTC"

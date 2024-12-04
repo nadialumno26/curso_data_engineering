@@ -235,6 +235,9 @@ models:
       - name: event_type
         data_type: varchar
         description: "type of event"
+        tests:
+           - dbt_expectations.expect_column_values_to_be_in_set:
+               value_set: ['page_view','add_to_cart','checkout','package_shipped']
 
       - name: user_id
         data_type: varchar
@@ -269,7 +272,7 @@ models:
     columns:
       - name: shipping_service_id
         data_type: varchar
-        description: "UUID for each shipping service company described"
+        description: "UUID for each shipping service company described (surrogate_key)"
 
       - name: shipping_service
         data_type: varchar

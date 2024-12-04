@@ -11,22 +11,11 @@ One of the following values:
 
 {% enddocs %}
 
-{% docs _fivetran_synced %}
-	
-_fivetran_synced will express the date the data was loaded.
-
-{% enddocs %}
-
-{% docs _fivetran_deleted %}
-	
-_fivetran_deleted has data type: boolean. It will flag if there has been a "delete" without necessarily deleting the row. 
-
-{% enddocs %}
-
 {% docs order_items %}
 	
 order_items is the bridge between orders and products, hence both IDs (order_id, product_id)
-are this table's primary key
+are this table's primary key.
+In the core layer this tables is joined to orders, creating a macro table named dim_orders
 
 {% enddocs %}
 
@@ -40,4 +29,11 @@ a test inserted in the dim_users that ensures that the email given by the user i
 	
 snapshot done in the user's source, the client wants to keep their user's historical information
 
+{% enddocs %}
+
+{% docs __dbt_utils__ %}
+# Utility macros
+Our dbt project heavily uses this suite of utility macros, especially:
+- `surrogate_key`
+- `at_least_one test`
 {% enddocs %}
